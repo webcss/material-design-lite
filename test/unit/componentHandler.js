@@ -112,7 +112,7 @@ describe('componentHandler', function() {
     componentHandler.upgradeElement(el, 'MaterialButton');
     componentHandler.upgradeElement(el, 'MaterialRipple');
     expect($(el)).to.have.data('upgraded', ',MaterialButton,MaterialRipple');
-  });  
+  });
 
   it('should upgrade a single component to an element by using its CSS classes', function() {
     var el = document.createElement('button');
@@ -147,8 +147,8 @@ describe('componentHandler', function() {
     var checkbox = createCheckbox();
 
     componentHandler.upgradeElements(checkbox);
-    
-    var child = checkbox.lastChild;    
+
+    var child = checkbox.lastChild;
     expect($(child)).to.have.data('upgraded', ',MaterialRipple');
   });
 
@@ -177,6 +177,16 @@ describe('componentHandler', function() {
     for (var i; i < buttons.length; i++) {
       expect($(buttons[i])).to.have.data('upgraded', ',MaterialButton');
     }
+  });
+
+  it('should downgrade all associated components in one pass', function() {
+    var container = document.createElement('button');
+    container.classList.add('mdl-js-button');
+    container.classList.add('mdl-js-ripple');
+    componentHandler.upgradeElements(container);
+    expect($(container)).to.have.data('upgraded', ',MaterialButton,MaterialRipple');
+    componentHandler.downgrade(container);
+    expect($(container)).to.have.data('upgraded', ',');
   });
 
 });
