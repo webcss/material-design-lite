@@ -182,11 +182,11 @@ describe('componentHandler', function() {
   it('should downgrade all associated components in one pass', function() {
     var container = document.createElement('button');
     container.classList.add('mdl-js-button');
-    container.classList.add('mdl-js-ripple');
+    container.classList.add('mdl-js-ripple-effect');
     componentHandler.upgradeElements(container);
     expect($(container)).to.have.data('upgraded', ',MaterialButton,MaterialRipple');
-    componentHandler.downgrade(container);
-    expect($(container)).to.have.data('upgraded', ',');
+    componentHandler.downgradeElements(container);
+    expect($(container)).to.have.data('upgraded', '');
   });
 
 });
