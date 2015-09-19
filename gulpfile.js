@@ -314,6 +314,8 @@ gulp.task('mocha:closure', ['closure'], function() {
 
 gulp.task('test', ['jshint', 'jscs', 'mocha', 'mocha:closure']);
 
+gulp.task('test:basic', ['jshint', 'jscs', 'mocha']);
+
 gulp.task('test:visual', function() {
   browserSync({
     notify: false,
