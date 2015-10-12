@@ -179,6 +179,16 @@ describe('componentHandler', function() {
     }
   });
 
+  it('should downgrade a node', function() {
+    var button = document.createElement('button');
+    button.classList.add('mdl-js-button');
+    document.body.appendChild(button);
+    componentHandler.upgradeElements(button);
+    expect($(button)).to.have.data('upgraded', ',MaterialButton');
+    componentHandler.downgradeElements(button);
+    expect($(button)).to.have.data('upgraded', '');
+  });
+
   it('should downgrade all associated components in one pass', function() {
     var container = document.createElement('button');
     container.classList.add('mdl-js-button');
